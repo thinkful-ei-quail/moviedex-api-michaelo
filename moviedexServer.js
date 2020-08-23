@@ -72,6 +72,10 @@ function getAllMovies(req, res) {
 //API Request/Response handler
 app.get('/movie', handleGenreSearch, handleCountrySearch, handleAvgVoteSearch, getAllMovies);
 
+app.get('/', (request, response) => {
+  response.send('Hello, world!');
+});
+
 // 4 parameters in middleware, express knows to treat this as error handler
 app.use((error, req, res, next) => {
   let response;
