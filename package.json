@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node moviedexServer.js",
-    "dev": "nodemon moviedexServer.js"
+    "dev": "nodemon moviedexServer.js",
+    "predeploy": "npm audit",
+    "deploy": "git push heroku master"
   },
   "keywords": [],
   "engines": {
     "node": "12.18.1"
-    },
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
