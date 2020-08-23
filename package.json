@@ -2,13 +2,15 @@
   "name": "moviedex-api",
   "version": "1.0.0",
   "description": "",
-  "main": "moviedexServer.js",
+  "main": "index.js",
   "scripts": {
     "start": "node moviedexServer.js",
     "dev": "nodemon moviedexServer.js"
   },
   "keywords": [],
-  "engines": {"node": "12.18.1"},
+  "engines": {
+    "node": "12.18.1"
+    },
   "author": "",
   "license": "ISC",
   "dependencies": {
