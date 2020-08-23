@@ -8,7 +8,8 @@ const { response } = require('express');
 
 const app = express();
 
-app.use(morgan('dev'));
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common';
+app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(cors());
 app.use(validateBearerToken);
@@ -71,4 +72,18 @@ function getAllMovies(req, res) {
 //API Request/Response handler
 app.get('/movie', handleGenreSearch, handleCountrySearch, handleAvgVoteSearch, getAllMovies);
 
-app.listen(8000, () => console.log('Listening on PORT 8000'));
+// 4 parameters in middleware, express knows to treat this as error handler
+app.use((error, req, res, next) => {
+  let response;
+  if (process.env.NODE_ENV === 'production') {
+    response = { error: { message: 'server error' } };
+  } else {
+    response = { error };
+  }
+  res.status(500).json(response);
+});
+
+//Server
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT);
